@@ -3,39 +3,43 @@ import "./App.css";
 import { useState } from "react";
 
 const App = () => {
-  const initialTasks = [
-    "Clean my room.",
-    "Dinner is prepared.",
-    "Doing Joe's homework.",
-    "Doing dishes.",
-    "Washing clothes.",
-  ];
+  const [number, setNumber] = useState(10);
+  const [number2, setNumber2] = useState(2);
+  const [h1Color, setH1Color] = useState("red");
+  const styleH1 = { color: h1Color, fontSize: "100px" };
+  const [input, setInput] = useState("");
 
-  const [userInput, setUserInput] = useState("");
-  const [tasks, setTasks] = useState(initialTasks);
   return (
-    <div className="App">
-      <h1>My Tasks</h1>
-      <input
-        onChange={(e) => {
-          setUserInput(e.target.value);
-        }}
-        value={userInput}
-      ></input>
+    <div>
+      <h1 style={styleH1}>{number}</h1>
       <button
         onClick={() => {
-          const newTasks = [...tasks];
-          newTasks.push(userInput);
-          setTasks(newTasks);
-          setUserInput("");
+          setNumber(number + 1);
+          setNumber2(number2 + 2);
+          setH1Color("green");
         }}
       >
-        Add Task
+        plus
       </button>
-      <h2>{userInput}</h2>
-      {tasks.map((e, i) => {
-        return <div key={i}>{e} </div>;
-      })}
+
+      <button
+        onClick={() => {
+          setNumber(number - 1);
+          setNumber2(number2 - 2);
+          setH1Color("red");
+        }}
+      >
+        minus
+      </button>
+      <h1>{number2}</h1>
+      <input
+        onChange={(e) => {
+          setInput(e.target.value);
+        }}
+      >
+        value = {input}
+      </input>
+      <button>Add value</button>
     </div>
   );
 };
