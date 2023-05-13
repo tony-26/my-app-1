@@ -1,45 +1,57 @@
 import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
+import Heading from "./Components/Heading";
 
 const App = () => {
-  const [number, setNumber] = useState(10);
-  const [number2, setNumber2] = useState(2);
-  const [h1Color, setH1Color] = useState("red");
-  const styleH1 = { color: h1Color, fontSize: "100px" };
-  const [input, setInput] = useState("");
-
+  const [userInput, setUserInput] = useState("");
+  const [tasks, setTasks] = useState([
+    "Do the homework",
+    "Eat",
+    "Cleaning the house",
+    "Turn on the light",
+  ]);
   return (
     <div>
-      <h1 style={styleH1}>{number}</h1>
-      <button
-        onClick={() => {
-          setNumber(number + 1);
-          setNumber2(number2 + 2);
-          setH1Color("green");
-        }}
-      >
-        plus
-      </button>
-
-      <button
-        onClick={() => {
-          setNumber(number - 1);
-          setNumber2(number2 - 2);
-          setH1Color("red");
-        }}
-      >
-        minus
-      </button>
-      <h1>{number2}</h1>
+      <Heading headingColor={"red"} headingSize={"40px"} />
       <input
+        style={{ height: "40px" }}
         onChange={(e) => {
-          setInput(e.target.value);
+          setUserInput(e.target.value);
+        }}
+        value={userInput}
+      />
+      <button
+        onClick={() => {
+          setTasks([...tasks, userInput]);
+          setUserInput("");
         }}
       >
-        value = {input}
-      </input>
-      <button>Add value</button>
+        Add task
+      </button>
+      <h2>{userInput}</h2>
+      {tasks.map((task, i) => {
+        return (
+          <div key={i}>
+            {task}
+            <button
+              style={{
+                height: "24px",
+                width: "24px",
+                backgroundColor: "grey",
+                padding: "2px 5px",
+              }}
+              onClick={() => {
+                const newTasks = [...tasks];
+                newTasks.splice(i, 1);
+                setTasks(newTasks);
+              }}
+            >
+              X
+            </button>
+          </div>
+        );
+      })}
     </div>
   );
 };
