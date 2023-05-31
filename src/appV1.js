@@ -1,43 +1,46 @@
-import logo from "./logo.svg";
-import "./App.css";
-import { useState } from "react";
+import React, { useState } from "react";
 
-const App = () => {
-  const initialTasks = [
-    "Clean my room.",
-    "Dinner is prepared.",
-    "Doing Joe's homework.",
-    "Doing dishes.",
-    "Washing clothes.",
-  ];
-
-  const [userInput, setUserInput] = useState("");
-  const [tasks, setTasks] = useState(initialTasks);
+export const App = () => {
+  const [input, setInput] = useState("");
+  const [tasks, setTasks] = useState(["do homework", "play game", "watch tv"]);
   return (
-    <div className="App">
-      <h1>My Tasks</h1>
+    <div>
+      <h1>My page {input}</h1>
       <input
         onChange={(e) => {
-          setUserInput(e.target.value);
+          setInput(e.target.value);
         }}
-        value={userInput}
+        value={input}
       ></input>
       <button
         onClick={() => {
-          const newTasks = [...tasks];
-          newTasks.push(userInput);
-          setTasks(newTasks);
-          setUserInput("");
+          if (input.length > 0) {
+            setTasks([...tasks, input]);
+            setInput("");
+          }
         }}
       >
-        Add Task
+        ADD
       </button>
-      <h2>{userInput}</h2>
-      {tasks.map((e, i) => {
-        return <div key={i}>{e} </div>;
-      })}
+      <h3>
+        {tasks.map((e, i) => {
+          return (
+            <div key={i}>
+              {e}
+              <button
+                onClick={() => {
+                  const copy = [...tasks];
+                  const newTasks = copy.slice(0, i).concat(copy.slice(i + 1));
+                  setTasks(newTasks);
+                }}
+                style={{ border: "1px black solid ", backgroundColor: "red" }}
+              >
+                X
+              </button>
+            </div>
+          );
+        })}
+      </h3>
     </div>
   );
 };
-
-export default App;
