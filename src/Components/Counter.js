@@ -3,8 +3,12 @@ import { useState } from "react";
 const App = () => {
   const [num, setNum] = useState(0);
   const [numColor, setNumColor] = useState("green");
+  const [userInput, setUserInput] = useState(1);
+  const colorChangeHandler = ()=>{
+    
+  }
   return (
-    <div style={{ color: numColor }}>
+    <div>
       <button
         onClick={() => {
           if (num % 2 !== 0) {
@@ -17,7 +21,7 @@ const App = () => {
       >
         +
       </button>
-      <h1>{num}</h1>
+      <h1 style={{ color: numColor }}>{num}</h1>
       <button
         onClick={() => {
           if (num % 2 !== 0) {
@@ -29,6 +33,22 @@ const App = () => {
         }}
       >
         -
+      </button>
+
+      <h2>Number Change: {userInput}</h2>
+      <input
+        onChange={(e) => {
+          setUserInput(e.target.value);
+        }}
+        value={userInput}
+      ></input>
+      <button
+        onClick={() => {
+          setNum(num - userInput);
+          setUserInput("");
+        }}
+      >
+        Save
       </button>
     </div>
   );
