@@ -1,6 +1,7 @@
 import _ from "lodash";
 import StatusCheckbox from "./StatusCheckbox";
 import ColorSelector from "./ColorSelector";
+import DeleteTask from "./DeleteTask";
 const Task = (props) => {
   // const task = props.task;
   // const i = props.i;
@@ -13,10 +14,7 @@ const Task = (props) => {
     copy[i].isComplete = !copy[i].isComplete;
     setTasks(copy);
   };
-  const deleteTaskHandler = () => {
-    const copy = _.cloneDeep(tasks);
-    setTasks(copy.slice(0, i).concat(copy.slice(i + 1)));
-  };
+  
   return (
     <div style={taskColors}>
       <StatusCheckbox
@@ -26,8 +24,8 @@ const Task = (props) => {
       {task.text}
 
       <ColorSelector i={i} tasks={tasks} setTasks={setTasks} />
-
-      <button onClick={deleteTaskHandler}>X</button>
+      <DeleteTask i={i} tasks={tasks} setTasks={setTasks} />
+      
     </div>
   );
 };
