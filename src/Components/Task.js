@@ -14,18 +14,14 @@ const Task = (props) => {
     copy[i].isComplete = !copy[i].isComplete;
     setTasks(copy);
   };
-  
+
   return (
     <div style={taskColors}>
-      <StatusCheckbox
-        isComplete={task.isComplete}
-        isCompleteHandler={isCompleteHandler}
-      />
+      <StatusCheckbox i={i} tasks={tasks} setTasks={setTasks} />
       {task.text}
 
       <ColorSelector i={i} tasks={tasks} setTasks={setTasks} />
       <DeleteTask i={i} tasks={tasks} setTasks={setTasks} />
-      
     </div>
   );
 };
