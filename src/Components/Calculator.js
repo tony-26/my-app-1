@@ -1,112 +1,120 @@
 import { useState } from "react";
 
 const App = () => {
-  const [firstDigit, setFirstDigit] = useState(0);
-  const [sign, setSign] = useState("");
+  const [arr, setArr] = useState("");
+  const calculatingFunc = (arr) => {
+    const firstDigit = "";
+    const sign = "";
+    const secondDigit = "";
+    for (let i = 0; i < arr.length; i++) {
+      // if (arr[i].){
+      // }
+    }
+  };
   return (
     <div>
       <h1>Counting</h1>
       <button
         onClick={() => {
-          setFirstDigit(0);
+          setArr([...arr, 0]);
         }}
       >
         0
       </button>
       <button
         onClick={() => {
-          setFirstDigit(1);
+          setArr([...arr, 1]);
         }}
       >
         1
       </button>
       <button
         onClick={() => {
-          setFirstDigit(2);
+          setArr([...arr, 2]);
         }}
       >
         2
       </button>
       <button
         onClick={() => {
-          setFirstDigit(3);
+          setArr([...arr, 3]);
         }}
       >
         3
       </button>
       <button
         onClick={() => {
-          setFirstDigit(4);
+          setArr([...arr, 4]);
         }}
       >
         4
       </button>
       <button
         onClick={() => {
-          setFirstDigit(5);
+          setArr([...arr, 5]);
         }}
       >
         5
       </button>
       <button
         onClick={() => {
-          setFirstDigit(6);
+          setArr([...arr, 6]);
         }}
       >
         6
       </button>
       <button
         onClick={() => {
-          setFirstDigit(7);
+          setArr([...arr, 7]);
         }}
       >
         7
       </button>
       <button
         onClick={() => {
-          setFirstDigit(8);
+          setArr([...arr, 8]);
         }}
       >
         8
       </button>
       <button
         onClick={() => {
-          setFirstDigit(9);
+          setArr([...arr, 9]);
         }}
       >
         9
       </button>
       <button
         onClick={() => {
-          setSign("+");
+          setArr([...arr, "+"]);
         }}
       >
         +
       </button>
       <button
         onClick={() => {
-          setSign("-");
+          setArr([...arr, "-"]);
         }}
       >
         -
       </button>
       <button
         onClick={() => {
-          setSign("*");
+          setArr([...arr, "*"]);
         }}
       >
         *
       </button>
       <button
         onClick={() => {
-          setSign("/");
+          setArr([...arr, "/"]);
         }}
       >
         /
       </button>
-      <h2>{firstDigit}</h2>
-      <h2>{sign}</h2>
-      
+      <button>=</button>
+      <h2>{arr}</h2>
+      {}
     </div>
   );
 };

@@ -1,55 +1,38 @@
 import React, { useState } from "react";
 import "./App.css";
-import _ from "lodash";
+import _, { initial } from "lodash";
+import AddTask from "./AddTask";
+import Task from "./Task";
 
-export const App = () => {
-  const [userInput, setUserInput] = useState("");
+const App = () => {
   const initialTasks = [
-    { text: "do the dishes", color: "green", isComplete: false },
-    { text: "play tennis", color: "black", isComplete: true },
-    { text: "watch tv", color: "red", isComplete: false },
+    { text: "Play football", color: "blue", isComplete: true },
+    { text: "Watch TV", color: "black", isComplete: false },
   ];
   const [tasks, setTasks] = useState(initialTasks);
-  const inputboxOnchangeHandler = (e) => {
-    setUserInput(e.target.value);
-  };
-  const addTaskHandler = () => {
-    const newCopy = _.cloneDeep(tasks);
-    newCopy.push({ text: userInput, color: "black", isComplete: false });
-    setTasks(newCopy);
-    setUserInput("");
-  };
-  const taskCompleteToggleHandler = (i) => {
-    const copy = _.cloneDeep(tasks);
-    copy[i].isComplete = !copy[i].isComplete;
-    setTasks(copy);
-  };
-
   return (
     <div>
-      <input onChange={inputboxOnchangeHandler} value={userInput}></input>
-      <button onClick={addTaskHandler}>ADD TASK</button>
+      {/* <input
+        type="checkbox"
+        value="complete"
+        onChange={() => {
+          const newArr = [];
+          for (let i = 0; i < initialTasks.length; i++) {
+            if (initialTasks[i].isComplete === true) {
+              newArr.push(initialTasks[i]);
+            }
+          }
+          setTasks(newArr);
+        }}
+      ></input> */}
+
+      <AddTask parentTasks={tasks} parentSetTasks={setTasks} />
       {tasks.map((e, i) => {
-        const taskColor = { color: e.color };
         return (
-          <div key={i} style={taskColor}>
-            <input
-              onChange={() => taskCompleteToggleHandler(i)}
-              type="checkbox"
-              checked={e.isComplete}
-            />
-            {e.text}
-            <button
-              onClick={() => {
-                const copyTasks = _.cloneDeep(tasks);
-                setTasks(copyTasks.slice(0, i).concat(copyTasks.slice(i + 1)));
-              }}
-            >
-              X
-            </button>
-          </div>
+          <Task key={i} task={e} i={i} tasks={tasks} setTasks={setTasks} />
         );
       })}
     </div>
   );
 };
+export default App;

@@ -4,9 +4,7 @@ const App = () => {
   const [num, setNum] = useState(0);
   const [numColor, setNumColor] = useState("green");
   const [userInput, setUserInput] = useState(1);
-  const colorChangeHandler = ()=>{
-    
-  }
+  const colorChangeHandler = () => {};
   return (
     <div>
       <button
@@ -16,7 +14,8 @@ const App = () => {
           } else {
             setNumColor("red");
           }
-          setNum(num + 1);
+
+          setNum(num + Number(userInput));
         }}
       >
         +
@@ -29,7 +28,7 @@ const App = () => {
           } else {
             setNumColor("red");
           }
-          setNum(num - 1);
+          setNum(num - Number(userInput));
         }}
       >
         -
@@ -42,14 +41,7 @@ const App = () => {
         }}
         value={userInput}
       ></input>
-      <button
-        onClick={() => {
-          setNum(num - userInput);
-          setUserInput("");
-        }}
-      >
-        Save
-      </button>
+      {/* <button onClick={() => {}}>Save</button> */}
     </div>
   );
 };
