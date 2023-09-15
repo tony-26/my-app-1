@@ -13,6 +13,3 @@ export const filteringByColors = (tasks, selectedColors) => {
 
 export const filterByColorStatus = (tasks, status, selectedColors) =>
   filteringByStatus(filteringByColors(tasks, selectedColors), status);
-
-// export const filterByColorStatus = (tasks, status, selectedColors) =>
-//   filteringByColors(filteringByStatus(tasks, status), selectedColors);
